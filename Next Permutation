@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		// Write your code here.
+		for(int i=permutation.size()-2;i>=0;i--){
+			if(permutation.get(i)<permutation.get(i+1)){
+				int val=permutation.get(i);
+				int ind=findNext(permutation,val,i);
+				permutation.set(i,permutation.get(ind));
+				permutation.set(ind,val);
+				Collections.sort(permutation.subList(i+1,permutation.size()));
+				return permutation;
+			}
+		}
+		Collections.sort(permutation);
+		return permutation;
+	}
+	public static int findNext(ArrayList<Integer> per,int val,int ind){
+		//System.out.println(val+" "+ind);
+		for(int i=per.size()-1;i>=ind;i--){
+			if(per.get(i)>val){
+				return i;
+			}
+		}
+		return -1;
+	}
+}
