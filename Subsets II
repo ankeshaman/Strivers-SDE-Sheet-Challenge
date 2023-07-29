@@ -1,0 +1,30 @@
+import java.util.* ;
+
+import java.io.*; 
+public class Solution {
+    static ArrayList<ArrayList<Integer>> list;
+    public static ArrayList<ArrayList<Integer>> uniqueSubsets(int n, int arr[]) {
+        // Write your code here..
+        list=new ArrayList<>();
+        ArrayList<Integer> cur=new ArrayList<>();
+        Arrays.sort(arr);
+        subSet(arr,0,cur);
+        return list;
+    }
+    public static void subSet(int[] arr,int ind,ArrayList<Integer> cur){
+        if(ind==arr.length){
+            list.add(new ArrayList<>(cur));
+            return;
+        }
+        list.add(new ArrayList<>(cur));
+        for(int i=ind;i<arr.length;i++){
+            if(i>ind && arr[i]==arr[i-1]){
+                continue;
+            }
+            cur.add(arr[i]);
+            subSet(arr,i+1,cur);
+            cur.remove(cur.size()-1);
+        }
+    }
+
+}
