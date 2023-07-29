@@ -1,0 +1,24 @@
+import java.util.*;
+public class Solution
+{
+    public static int singleNonDuplicate(ArrayList<Integer> arr)
+    {
+        //    Write your code here.
+        //int no=0;
+       // Collections.sort(arr); 1 1 2 3 3 4 4
+        int start=0,end=arr.size()-2;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            // if(mid%2==1){
+            //     mid--;
+            // }
+            if(arr.get(mid)==arr.get(mid^1)){
+                start=mid+1;
+            }
+            else{
+                end=mid-1;
+            }
+        }
+        return arr.get(start);
+    }
+}
