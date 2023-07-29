@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static int findMinimumCoins(int amount)
+    {
+        // Write your code here.
+        int[] coins=new int[]{1,2,5,10,50,100,500,1000};
+
+        int n = coins.length-1,count=0;
+        for(int i=n;i>=0;i--){
+            while(amount >= coins[i]){
+                amount -= coins[i];
+                count++;
+            }
+        }
+        return count;
+    }
+    // public static int minCoin(int amount,int[] coin,int ind){
+    //     if(amount==0){
+    //         return 0;
+    //     }
+    //     if(coin[ind]>amount || ind>=coin.length){
+    //         return (int)1e6+1;
+    //     }
+    //     if(coin[ind]<=amount){
+    //         return Math.min(1+minCoin(amount-coin[ind],coin,ind),minCoin(amount,coin,ind+1));
+    //     }
+    //     else{
+    //         return minCoin(amount,coin,ind+1);
+    //     }
+    // }
+}
