@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution
+{
+    public static int jobScheduling(int[][] jobs)
+    {
+        // Write your code here
+        Arrays.sort(jobs,(j1,j2)->j2[1]-j1[1]);
+        int profit=0,day=0;
+        for(int[] d:jobs){
+            day=Math.max(day,d[0]);
+        }
+        int[] job=new int[day+1];
+        Arrays.fill(job,-1);
+        for(int j=0;j<jobs.length;){
+            if(job[jobs[j][0]]==-1){
+                job[jobs[j][0]]=1;
+                profit+=jobs[j][1];
+                j++;
+            }
+            else{
+                int d=jobs[j][0];
+                while(d>0 && job[d]!=-1){
+                    d--;
+                }
+                if(d>0){
+                    job[d]=1;
+                    profit+=jobs[j][1];
+                }
+                j++;
+            }
+        }
+        return profit; 
+    }
+}
