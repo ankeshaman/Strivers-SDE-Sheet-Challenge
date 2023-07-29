@@ -1,0 +1,35 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    static List<List<String>> list;
+    public static List<List<String>> partition(String s) {
+        // Write your code here.
+        list=new ArrayList<>();
+        countPart(s,0,new ArrayList<>());
+        return list;
+    }
+    public static void countPart(String s,int ind,List<String> cur){
+        if(ind==s.length()){
+            list.add(new ArrayList(cur));
+            return;
+        }
+        for(int i=ind;i<s.length();i++){
+            if(isPalindrome(s,ind,i)){
+                String str=s.substring(ind,i+1);
+                cur.add(str);
+                countPart(s,i+1,cur);
+                cur.remove(cur.size()-1);
+            }
+            //countPart(s,i,k);
+            //countPart(s,k+1,j);
+        }
+    }
+    public static boolean isPalindrome(String s,int i, int j){
+        while(i<j){
+            if(s.charAt(i++)!=s.charAt(j--)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
