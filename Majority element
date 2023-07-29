@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.* ;
+
+public class Solution {
+	public static int findMajority(int[] arr, int n) {
+		// Write your code here.
+		HashMap<Integer,Integer> hm=new HashMap<>();
+		//int freq=1;
+		int no=-1;
+		for(int in:arr){
+			hm.put(in,hm.getOrDefault(in,0)+1);
+		}
+		for(Integer in:hm.keySet()){
+			int freq=hm.get(in);
+			if(freq>n/2){
+				return in;
+			}
+		}
+		return -1;
+	}
+}
