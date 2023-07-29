@@ -1,0 +1,21 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    static ArrayList<Integer> al;
+    public static ArrayList<Integer> subsetSum(int num[]) {
+        // Write your code here..
+        al=new ArrayList<>();
+        subSum(num,0,0);
+        Collections.sort(al);
+        return al;
+    }
+    public static void subSum(int[] nums,int ind,int sum){
+        if(ind>=nums.length){
+            al.add(sum);
+            return;
+        }
+        subSum(nums,ind+1,sum+nums[ind]);
+        subSum(nums,ind+1,sum);
+    }
+
+}
