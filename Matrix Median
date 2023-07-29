@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Solution
+{
+	public static int getMedian(ArrayList<ArrayList<Integer>> matrix)
+	{
+		// Write your code here.
+		int min=Integer.MAX_VALUE;
+		int max=Integer.MIN_VALUE;
+		for(int i=0;i<matrix.size();i++){
+			min=Math.min(min,matrix.get(i).get(0));
+			max=Math.max(max,matrix.get(i).get(matrix.get(0).size()-1));
+		}
+		int req=(matrix.size()*matrix.get(0).size()+1)/2;
+		int ans=-1;
+		while(min<max){
+			int mid=min+(max-min)/2;
+			int counter=0;
+			for(int i=0;i<matrix.size();i++){
+				int[] arr=matrix.get(i).stream().mapToInt(in->in).toArray();
+				int ind=Arrays.binarySearch(arr, mid);
+				if(ind<0){
+					ind=Math.abs(ind)-1;
+				}
+				else{
+					while(ind<matrix.get(i).size() && matrix.get(i).get(ind)==mid){
+						ind++;
+					}
+				}
+				counter+=ind;
+			}
+			if(counter==req){
+				ans=mid;
+			}
+			else if(counter>req){
+				max=mid-1;
+			}
+			else{
+				min=mid+1;
+			}			
+		}
+		return ans;
+	}
+}
