@@ -1,0 +1,22 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	static Integer[][] dp;
+	public static int uniquePaths(int m, int n) {
+		// Write your code here.
+		dp=new Integer[m][n];
+        return path(m,n,0,0);
+	}
+	public static int path(int m,int n,int i,int j){
+        if(i==m-1 && j==n-1){
+            return 1;
+        }
+        if(i>=m || j>=n ){
+            return 0;
+        }
+        if(dp[i][j]!=null){
+            return dp[i][j];
+        }
+        return dp[i][j]=(path(m,n,i+1,j)+path(m,n,i,j+1));
+    }
+}
