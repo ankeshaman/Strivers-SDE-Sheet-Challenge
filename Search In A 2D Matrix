@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+public class Solution {
+    static boolean searchMatrix(ArrayList<ArrayList<Integer>> mat, int target) {
+        // Write your code here.
+        for(ArrayList<Integer> l:mat){
+            int ind=search(l,target);
+            if(ind>=0){
+                return true;
+            }
+        }
+        return false;
+    }
+    static int search(ArrayList<Integer> list,int target){
+        int start=0;
+        int end=list.size()-1;
+        //System.out.println(list);
+        while(start<=end){
+            int mid=start+(end-start)/2;
+           // System.out.println(mid+" "+list.get(mid));
+            if(list.get(mid)==target){
+                return mid;
+            }
+            else if(list.get(mid)>target){
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return -1;
+    }
+}
